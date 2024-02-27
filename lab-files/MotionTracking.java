@@ -58,7 +58,6 @@ public class MotionTrackingActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        disconnectTango();
     }
 
     private void setupViews() {
