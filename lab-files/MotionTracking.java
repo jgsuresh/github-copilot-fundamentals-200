@@ -36,7 +36,6 @@ public class MotionTrackingActivity extends Activity {
 
     private RajawaliSurfaceView mSurfaceView;
     private MotionTrackingRajawaliRenderer mRenderer;
-    private TangoConfig mConfig;
 
     private AtomicBoolean mIsTangoPoseReady = new AtomicBoolean(false);
     private int mDisplayRotation = 0;
@@ -87,7 +86,7 @@ public class MotionTrackingActivity extends Activity {
                     }
                 }
             }
-        });
+        })
     }
 
     private void disconnectTango() {

@@ -1,54 +1,38 @@
-# Improve code with GitHub Copilot
+# Documentation with GitHub Copilot
 
-## Bug Fixes - MotionTracking.java
+## Generating Documentation with GitHub Copilot
 
-This Java code is an Android activity for a motion tracking application using Google's Project Tango. Here's a breakdown of the key parts:
+### In mathematics, a Diophantine equation is an equation, typically a polynomial equation in two or more unknowns with integer coefficients, for which only integer solutions are of interest. A linear Diophantine equation equates to a constant the sum of two or more monomials, each of degree one. Some diophantine equations are difficult to solve, while others are much easier
 
-- Imports: The code imports necessary classes from the Tango API, Android SDK, and Rajawali3D (a 3D engine for Android).
-- Class Declaration: The MotionTrackingActivity class extends Activity, meaning it represents a single screen in the app.
-- Variables: The class has several private variables, including a RajawaliSurfaceView for rendering 3D graphics, a MotionTrackingRajawaliRenderer for handling the OpenGL rendering, a TangoConfig for configuring the Tango service, an AtomicBoolean to track if the Tango pose is ready, and an integer for the display rotation.
-- Lifecycle Methods: The onCreate, onResume, and onPause methods are overridden to set up the views and renderer, initialize the Tango service, and disconnect from the Tango service, respectively.
-- setupViews: This method sets up the RajawaliSurfaceView and its renderer.
-- initializeTango: This method initializes the Tango service, sets up the Tango configuration, connects to the Tango service, and sets the display rotation.
-- disconnectTango: This method disconnects from the Tango service.
-- setupTangoConfig: This method sets up the Tango configuration to enable motion tracking and auto recovery.
-- startupTango: This method starts up the Tango service by connecting a listener that listens for updates from the Tango service.
-- setDisplayRotation: This method gets the current display rotation and stores it in mDisplayRotation.
-- showsToastAndFinishOnUiThread: This method shows a toast message on the UI thread and finishes the activity. It's used to handle exceptions when initializing the Tango service.
-
-The code uses the Tango service to track the device's motion and render it using the Rajawali3D engine. The Tango service provides pose data (the device's position and orientation), which can be used to create motion tracking applications.
+`diophantine_equation.py` contains code that attempts to solve the diphantine_equation. Use this file to demonstrate the capabilities of GitHub Copilot to explain code and create documentation for an existing program
 
 ### Task 1
 
-1. Read through the program in `MotionTracking.java` and see if you can determine the bugs that are currently evident: 
-
-  - the `mTango` variable is used but not declared
-  - the `initializeTango() method is missing a semi-colon at the end`
-  - the `onPause()` method is overridden but it doesn't do anything
+1. Open `diophantine_equation.py` in your VS Code window
 
 ### Task 2
 
-2. Copy and paste the code in `MotionTracking.java` into GitHub Copilot Chat and prompt it to determine the bugs in the code
+2. Open the GitHub Copilot Chat extension and chain prompts with the following prompts: 
 
-```
-Are there any bugs in the above code?
-```
+  a. Use the /explain command to explain the code --> `/explain explain the selected code`
+  
+  b. Ask GitHub Copilot to answer questions about documentation --> `What are the best practices for markdown documentation?`
+  
+  c. Create documentation for the diophantine_equation Python program --> `Generate documentation for the selected code`
+  
+  d. Reprompt GitHub Copilot Chat to add in any missing pieces that were mentioned in 2b
 
-3. Determine if Copilot found the same bugs that you did
+  2a. Read through the explanation and see if it matches the explanation of a diophantine equation [here](https://mathworld.wolfram.com/DiophantineEquation.html)
+  
+  2b. Take note of the best practices for documentation for future comparison
+  
+  2c. Add the documentation into a new file named `diophantine_documentation.md`
+  
+  2d. Add the improved documentation into `diophantine_documentation.md`
 
 ### Task 3
 
-4. Prompt Copilot to fix the bugs in the code using inline GitHub Copilot Chat
-
-  4a. Open `MotionTracking.java`, select all of the code in the file 
-  4b. Open inline Copilot Chat by pressing **Ctrl + I**
-  4c. Prompt Copilot to fix the bugs in the code --> `Fix the bugs in the selected code`
-
-5. Accept each of the suggestions given, ensuring that they address all of the bugs mentioned above
-
-### Task 4
-
-6. Save your changes and commit your code 
+3. Save the new files and commit your changes 
 
     #### Using the VS Code Interface
 
@@ -58,25 +42,21 @@ Are there any bugs in the above code?
     4. Once changes are staged, click the elipses in the far right corner, choose **Push** and enter your password
     5. Wait approx. 1 minute and refresh your GitHub repository to ensure that the changes are reflected in your repository
 
-## Refactoring Complex Code
+## Generate Documentation with GitHub Copilot - Your Turn!
 
 ### Task 1
-
-1. Highlight all of the code in `MotionTracking.java` by pressing **Ctrl + I**
-2. Open inline GitHub Copilot Chat in `MotionTracking.java` by pressing **Ctrl + I**
-3. Prompt Copilot to refactor the code: 
-
-```
-Refactor the selected code
-```
+1. Take some time to write your own program, or copy over a file that you have been working on in your personal time
+2. Save the file, and keep it open in your workspace
 
 ### Task 2
 
-4. Accept the changes suggested by GitHub Copilot
+3. Prompt GitHub Copilot Chat to explain the program and generate documentation for the file
+4. Add the generated documentation into a new file named `my_documentation.md`
+5. Prompt GitHub Copilot to make corrections as needed
 
 ### Task 3
 
-5. Save your changes and commit your code
+6. Save the new files and commit your changes
 
     #### Using the VS Code Interface
 

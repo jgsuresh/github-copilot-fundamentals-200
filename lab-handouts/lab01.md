@@ -1,92 +1,88 @@
-# Generating ARM and Terraform code with GitHub Copilot Chat
+# Test Driven Development with GitHub Copilot
 
-## Introduction
-
-GitHub Copilot Chat allows you to ask coding questions and receive answers directly within the supported IDE. Copilot Chat can help you with a variety of coding-related tasks, like offering you code suggestions, providing natural language descriptions of a piece of code's functionality and purpose, generating unit tests for your code, and proposing fixes for bugs in your code.
-
-**Use cases for GitHub Copilot Chat**
-
-There are several situations in which GitHub Copilot Chat can help with coding.
-
-- Generating unit test cases
-- Explaining code
-- Proposing code fixes
-- Answering coding questions
+## Test-driven development (TDD) with GitHub Copilot represents a powerful synergy of software development practices and cutting-edge AI assistance. With TDD, developers follow a process of writing tests before implementing their code. It actively assists in crafting test cases, generating test templates, and suggesting test scenarios based on the code being written
 
 ### Task 1
 
-1. In the VS Code activity bar, click the GitHub Copilot Chat icon to open the Chat Window
-
-2. In the **Ask Copilot a question or type / for topics** text box, type the following command:
+1. Prompt Copilot Chat to ask about the directory structure and naming conventions for testing in Python
 
 ```
-Write an ARM code for deploying a storage account to Azure with the code explanation.
+What is the directory structure and naming conventions for testing in Python?
 ```
 
-3. After GitHub Copilot Chat processes your question, an answer will be provided (with code suggestions when appropriate) in the chat window
+  2a. Create the correct directory and file in your codebase for testing
 
-4. To insert code into a new file, Click on the **Ellipsis (...)** and select **Insert Into New File**
+2. Open GitHub Copilot Chat and prompt it to generate test cases for a program that calculates amortization amount per month
 
-5. Save the file by `Ctrl + S` to save the file, name it `arm.json` and click on **OK**
+**Note, this program has not been written**
+
+```
+Generate 5 test cases for a Python program that calculates the amoritzation amount per month, given: 
+- Principal borrowed
+- Rate of interest per annum
+- Years to repay the loan
+```
+
+3. Add the code from step 1 into your new testing file, ensure this file is named `test_installments.py`
 
 ### Task 2
 
-1. Open the GitHub Copilot Chat Window by clicking the GitHub Copilot Chat icon
+4. Create a new Python file named `equated_monthly_installments.py` and 
 
-2. At the bottom of the Chat Window, type the following command:
+5. Open GitHub Copilot Chat
+
+6. Prompt Copilot Chat to create a program that calculates the amortization amount per month that will pass the tests, asking it to think step-by-step
 
 ```
-Write a Terraform code for deploying a storage account to Azure with the code explanation.
+Program to calculate the amortization amount per month, given
+- Principal borrowed
+- Rate of interest per annum
+- Years to repay the loan
+
+Generate code that will pass the tests
+Think step-by-step
 ```
 
-3. After GitHub Copilot Chat processes your question, an answer will be provided (with code suggestions when appropriate) in the chat window
-
-4. To insert code into a new file, Click on the **Ellipsis (...)** and select **Insert Into New File**
-
-5. Save the file by `Ctrl + S` to save the file, name it `terraform.tf` and click on **OK**
+8. Use inline GitHub Copilot to make code quality improvements as needed 
 
 ### Task 3
-
-1. Open the GitHub Copilot Chat Window by clicking the GitHub Copilot Chat icon
-
-2. At the bottom of the Chat Window, type the following command:
+8. Review Copilot's rationale for the code, and add it's suggestions into your `equated_monthly_installments.py` file. Your code may look similar to the program below: 
 
 ```
-Write a PowerShell script for deploying a storage account to Azure.
+def equated_monthly_installments(
+    principal: float, rate_per_annum: float, years_to_repay: int
+) -> float:
+    if principal <= 0:
+        raise Exception("Principal borrowed must be > 0")
+    if rate_per_annum < 0:
+        raise Exception("Rate of interest must be >= 0")
+    if years_to_repay <= 0 or not isinstance(years_to_repay, int):
+        raise Exception("Years to repay must be an integer > 0")
+
+    # Yearly rate is divided by 12 to get monthly rate
+    rate_per_month = rate_per_annum / 12
+
+    # Years to repay is multiplied by 12 to get number of payments as payment is monthly
+    number_of_payments = years_to_repay * 12
+
+    return (
+        principal
+        * rate_per_month
+        * (1 + rate_per_month) ** number_of_payments
+        / ((1 + rate_per_month) ** number_of_payments - 1)
+    )
+
 ```
-
-3. After GitHub Copilot Chat processes your question, an answer will be provided (with code suggestions when appropriate) in the chat window
-
-4. To insert code into a new file, Click on the **Ellipsis (...)** and select **Insert Into New File**
-
-5. Save the file by `Ctrl + S` to save the file, name it `powershell.ps1` and click on **OK**
 
 ### Task 4
 
-1. Push your code to the repository using either method provided below
+9. If your code does not contain a docstring, prompt Copilot to generate one: `Generate a docstring for the above code`
 
-    #### Using Git Flow
+10. Add the docstring into your new file
 
-    1. At the top of your VS Code window select the **Terminal** tab and click **New Terminal**. This will open a terminal window directly in your VS Code.
-    2. Run the command below to add the `arm.json`, `terraform.tf` and `powershell.ps1` files to the GitHub repo
+### Task 5
 
-    ```
-    git add arm.json terraform.tf powershell.ps1
-    ```
-
-    3. Commit the changes to the repo
-
-    ```
-    git commit -m "My copilot chat commit."
-    ```
-
-    4. Push the code to the repo
-
-    ```
-    git push
-    ```
-
-    5. Wait approx. 1 minute and refresh your GitHub repository to ensure that the changes are reflected in your repository
+10. Save your code and commit your changes 
 
     #### Using the VS Code Interface
 

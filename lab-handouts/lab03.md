@@ -1,90 +1,74 @@
-# Test Driven Development with GitHub Copilot
+# Doc to Code with GitHub Copilot
 
-## Test-driven development (TDD) with GitHub Copilot represents a powerful synergy of software development practices and cutting-edge AI assistance. With TDD, developers follow a process of writing tests before implementing their code. It actively assists in crafting test cases, generating test templates, and suggesting test scenarios based on the code being written
+## While we are able to generate documentation using GitHub Copilot, it is also possible to generate code _from_ documentation, giving us the upper hand as developers when perhaps a program has already been explained, and now it just needs to be developed
+
+For the purposes of this exercise, you will be investingating SIR models, as shown in the `SIR_documentation.md` file in the `lab-files` directory. Please take a few moments to read through that documentation now.
 
 ### Task 1
 
-1. Open GitHub Copilot Chat and prompt it to generate test cases for a program that calculates amortization amount per month
+1. Open `SIR_documentation.md` and select all of the documentation
 
-**Note, this program has not been written**
-
-```
-Generate test cases for a Python program that calculates the amoritzation amount per month, given: 
-- Principal borrowed
-- Rate of interest per annum
-- Years to repay the loan
-```
-
-2. Prompt Copilot Chat to ask about the directory structure and naming conventions for testing in Python
+2. Open GitHub Copilot Chat and prompt it to generate a program from the selected documentation
 
 ```
-What is the directory structure and naming conventions for testing in Python?
+Generate a program based on the selected documentation
 ```
-
-  2a. Create the correct directory and file in your codebase for testing
-
-3. Add the code from step 1 into your new testing file, ensure this file is named `test_installments.py`
 
 ### Task 2
 
-4. Create a new Python file named `equated_monthly_installments.py` and 
-
-5. Open GitHub Copilot Chat
-
-6. Prompt Copilot Chat to create a program that calculates the amortization amount per month, asking it to think step-by-step
+3. Insert the code into a new file named `SIR.cs`. Your code should look similar to the code below:
 
 ```
-Program to calculate the amortization amount per month, given
-- Principal borrowed
-- Rate of interest per annum
-- Years to repay the loan
+public class SIRModel
+{
+    private double susceptible;
+    private double infected;
+    private double recovered;
+    private double totalPopulation;
+    private double beta;
+    private double gamma;
 
-Generate code that will pass the tests
-Think step-by-step
+    public SIRModel(double totalPopulation, double initialInfected, double initialRecovered, double beta, double gamma)
+    {
+        this.totalPopulation = totalPopulation;
+        this.infected = initialInfected;
+        this.recovered = initialRecovered;
+        this.susceptible = totalPopulation - initialInfected - initialRecovered;
+        this.beta = beta;
+        this.gamma = gamma;
+    }
+
+    public void Calculate(double timeStep, int steps)
+    {
+        for (int i = 0; i < steps; i++)
+        {
+            double newInfected = timeStep * beta * susceptible * infected / totalPopulation;
+            double newRecovered = timeStep * gamma * infected;
+
+            susceptible -= newInfected;
+            infected += newInfected - newRecovered;
+            recovered += newRecovered;
+
+            Console.WriteLine($"Step {i}: Susceptible = {susceptible}, Infected = {infected}, Recovered = {recovered}");
+        }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        SIRModel model = new SIRModel(1000, 1, 0, 0.4, 0.1);
+        model.Calculate(0.5, 100);
+    }
+}
 ```
+
+In this program, the SIRModel class represents the SIR model. The Calculate method calculates the SIR model over a given number of steps, with each step representing a time interval specified by timeStep. The Main method creates an instance of the SIRModel class and calls the Calculate method to calculate the SIR model. The results are printed to the console at each step.
 
 ### Task 3
-7. Review Copilot's rationale for the code, and add it's suggestions into your `equated_monthly_installments.py` file. Your code may look similar to the program below: 
 
-```
-def equated_monthly_installments(
-    principal: float, rate_per_annum: float, years_to_repay: int
-) -> float:
-    if principal <= 0:
-        raise Exception("Principal borrowed must be > 0")
-    if rate_per_annum < 0:
-        raise Exception("Rate of interest must be >= 0")
-    if years_to_repay <= 0 or not isinstance(years_to_repay, int):
-        raise Exception("Years to repay must be an integer > 0")
-
-    # Yearly rate is divided by 12 to get monthly rate
-    rate_per_month = rate_per_annum / 12
-
-    # Years to repay is multiplied by 12 to get number of payments as payment is monthly
-    number_of_payments = years_to_repay * 12
-
-    return (
-        principal
-        * rate_per_month
-        * (1 + rate_per_month) ** number_of_payments
-        / ((1 + rate_per_month) ** number_of_payments - 1)
-    )
-
-```
-
-### Task 4
-
-8. If your code does not contain a docstring, prompt Copilot to generate one: `Generate a docstring for the above code`
-
-9. Add the docstring into your new file
-
-### Task 5
-
-10. Prompt 
-
-### Task 5
-
-10. Save your code and commit your changes 
+5. Save your changes and commit your code
 
     #### Using the VS Code Interface
 
