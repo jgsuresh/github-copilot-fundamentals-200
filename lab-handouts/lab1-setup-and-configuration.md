@@ -22,34 +22,21 @@ Provide your GitHub credentials to authenticate GitHub Copilot with your GitHub 
 
 You need to make sure that you have installed the **IntelliJ IDE** before installing GitHub Copilot extension for IntelliJ
 
-[Download IntelliJ](https://www.jetbrains.com/idea/download)
-
 ### Step 2: Go to Preferences
 
 In your IntelliJ IDE, go to **Preferences**.
-
-![Preferences](./images/CopilotPrerequisite/1_SettingExtension.jpg)
 
 ### Step 3: Search for Copilot Extension in IntelliJ and install
 
 You will see the **Preferences** window.
 
-![Home for Extension](./images/CopilotPrerequisite/2_SettingHome.jpg)
-
 Next, go to **Plugins** and search for **Copilot**. You should see **GitHub Copilot** extension in the search result. 
 
-![Search for Extension](./images/CopilotPrerequisite/3_SearchCopilot.jpg)
-
-
 Click on **Install** button to install the extension. You need to accept the term.
-
-![Install Extension and accept](./images/CopilotPrerequisite/4_AcceptCondition.jpg)
 
 ### Step 4: Restart IntelliJ IDE
 
 You need to restart IntelliJ IDE after installing the extension. Then, when you come back, you should see that Copilot Extension is installed.
-
-![Restart IntelliJ IDE](./images/CopilotPrerequisite/5_InstalledCopilot.jpg)
 
 ## Summary
 In this lab, you have set up your development environment with Visual Studio Code, IntelliJ IDEA. You are now ready to proceed to the next labs!
